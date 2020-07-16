@@ -27,10 +27,10 @@ function SongOverview() {
   const addSong = (newSongObject) => {
     console.log(newSongObject.title);
     if (
-      (newSongObject.title !== "") &
-      (newSongObject.artist !== "") &
-      (newSongObject.genre !== "") &
-      (newSongObject.rating !== "")
+      newSongObject.title !== "" &&
+      newSongObject.artist !== "" &&
+      newSongObject.genre !== "" &&
+      newSongObject.rating !== ""
     ) {
       setStateSongs([...songs, newSongObject]);
     } else {
