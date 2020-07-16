@@ -35,9 +35,51 @@ function SongOverview() {
     document.getElementsByTagName("select")[0].selectedIndex = 0;
   };
 
+  const sortTitle = (filterChoice, direction) => {
+    const copyOfSongs = songs.slice(0);
+    if (direction === "AZ") {
+      const sortedSongs = copyOfSongs.sort((a, b) =>
+        a[filterChoice] > b[filterChoice] ? 1 : -1
+      );
+      setStateSongs(sortedSongs);
+    } else if (direction === "ZA") {
+      const sortedSongs = copyOfSongs.sort((a, b) =>
+        a[filterChoice] < b[filterChoice] ? 1 : -1
+      );
+      setStateSongs(sortedSongs);
+    }
+  };
+
+  const filterSortingMethod = (chosenFilter) => {
+    switch (chosenFilter) {
+      case "title-AZ":
+        sortTitle("title", "AZ");
+        break;
+      case "title-ZA":
+        sortTitle("title", "ZA");
+        break;
+      case "artist-AZ":
+        sortTitle("artist", "AZ");
+        break;
+      case "artist-ZA":
+        sortTitle("artist", "ZA");
+        break;
+      case "rating-AZ":
+        sortTitle("rating", "AZ");
+        break;
+      case "rating-ZA":
+        sortTitle("rating", "ZA");
+        break;
+    }
+  };
+
   return (
     <div>
-      <SongForm addSong={addSong} />
+      <SongForm
+        addSong={addSong}
+        sortTitle={sortTitle}
+        filterSortingMethod={filterSortingMethod}
+      />
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
           <tr className="songList-header">
