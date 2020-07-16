@@ -25,7 +25,6 @@ function SongOverview() {
   ]);
 
   const addSong = (newSongObject) => {
-    //event.preventDefault();
     setStateSongs([...songs, newSongObject]);
     const inputFields = document.getElementsByTagName("input");
     let index;
@@ -73,12 +72,21 @@ function SongOverview() {
     }
   };
 
+  const deleteSong = (song) => {
+    setStateSongs(songs.filter((remainingSongs) => remainingSongs !== song));
+  };
+
+  const deleteSongList = () => {
+    setStateSongs([]);
+  };
+
   return (
     <div>
       <SongForm
         addSong={addSong}
         sortTitle={sortTitle}
         filterSortingMethod={filterSortingMethod}
+        deleteSongList={deleteSongList}
       />
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
@@ -90,7 +98,7 @@ function SongOverview() {
           </tr>
         </tbody>
       </table>
-      <SongList songs={songs} />
+      <SongList songs={songs} deleteSong={deleteSong} />
     </div>
   );
 }
