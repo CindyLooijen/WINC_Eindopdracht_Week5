@@ -6,7 +6,34 @@ th {
   width: 25%;
 }
 
-input {
+form {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin: 40px auto;
+}
+
+input,
+select {
   width: 250px;
   margin-right: 25px;
+}
+
+.songList-header {
+  height: 50px;
+  background-color: lightgrey;
+}
+
+.songs-row:nth-child(odd) {
+  height: 35px;
+  background-color: rgb(255, 192, 203, 0.7);
+}
+
+.songs-row:nth-child(even) {
+  height: 35px;
+  background-color: rgb(255, 192, 203, 0.4);
+}
+
+.table-songlist-header {
+  margin-bottom: 15px;
 }

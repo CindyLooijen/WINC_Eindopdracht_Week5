@@ -5,21 +5,18 @@ import SongList from "./SongList";
 function SongOverview() {
   const [songs, setStateSongs] = useState([
     {
-      //id: 1,
       title: "Closer",
       artist: "Kings of Leon",
       genre: "Rock",
       rating: "4",
     },
     {
-      //id: 2,
       title: "Animals",
       artist: "Maroon 5",
       genre: "Pop",
       rating: "5",
     },
     {
-      //id: 3,
       title: "Diamant",
       artist: "Nielson",
       genre: "Pop",
@@ -41,13 +38,15 @@ function SongOverview() {
   return (
     <div>
       <SongForm addSong={addSong} />
-      <table>
-        <tr className="song-header">
-          <th className="song-row__item">Song</th>
-          <th className="song-row__item">Artist</th>
-          <th className="song-row__item">Genre</th>
-          <th className="song-row__item">Rating</th>
-        </tr>
+      <table cellSpacing="0" className="table-songlist-header">
+        <tbody>
+          <tr className="songList-header">
+            <th className="song-row__item">Song</th>
+            <th className="song-row__item">Artist</th>
+            <th className="song-row__item">Genre</th>
+            <th className="song-row__item">Rating</th>
+          </tr>
+        </tbody>
       </table>
       <SongList songs={songs} />
     </div>

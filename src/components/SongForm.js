@@ -6,19 +6,9 @@ const SongForm = (props) => {
 
   return (
     <form onSubmit={handleSubmit(props.addSong)}>
-      <input name="title" ref={register} placeholder="Title" id="input-title" />
-      <input
-        name="artist"
-        ref={register}
-        placeholder="Artist"
-        id="input-artist"
-      />
-      <input
-        name="genre"
-        ref={register}
-        placeholder="Genre"
-        className="input-field"
-      />
+      <input name="title" ref={register} placeholder="Title" />
+      <input name="artist" ref={register} placeholder="Artist" />
+      <input name="genre" ref={register} placeholder="Genre" />
       <select name="rating" ref={register} defaultValue="">
         <option value="" disabled hidden>
           Select rating
