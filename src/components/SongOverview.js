@@ -41,7 +41,10 @@ function SongOverview() {
     for (index = 0; index < inputFields.length; index++) {
       inputFields[index].value = "";
     }
-    document.getElementsByTagName("select")[0].selectedIndex = 0;
+    const selectFields = document.getElementsByTagName("select");
+    for (index = 0; index < inputFields.length; index++) {
+      selectFields[index].selectedIndex = 0;
+    }
   };
 
   const sortTitle = (filterChoice, direction) => {
