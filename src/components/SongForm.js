@@ -37,6 +37,7 @@ const SongForm = (props) => {
         <option value="rating-AZ">Sort rating 1-5</option>
         <option value="rating-ZA">Sort artist 5-1</option>
       </select>
+      <button onClick={() => props.deleteSongList()}>Delete songlist</button>
     </div>
   );
 };
