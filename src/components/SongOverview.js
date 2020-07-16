@@ -25,7 +25,17 @@ function SongOverview() {
   ]);
 
   const addSong = (newSongObject) => {
-    setStateSongs([...songs, newSongObject]);
+    console.log(newSongObject.title);
+    if (
+      (newSongObject.title !== "") &
+      (newSongObject.artist !== "") &
+      (newSongObject.genre !== "") &
+      (newSongObject.rating !== "")
+    ) {
+      setStateSongs([...songs, newSongObject]);
+    } else {
+      alert("Please fill in all of the fields");
+    }
     const inputFields = document.getElementsByTagName("input");
     let index;
     for (index = 0; index < inputFields.length; index++) {
@@ -69,6 +79,8 @@ function SongOverview() {
       case "rating-ZA":
         sortTitle("rating", "ZA");
         break;
+      default:
+        setStateSongs(songs);
     }
   };
 
