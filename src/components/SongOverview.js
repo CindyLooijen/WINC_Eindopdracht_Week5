@@ -26,7 +26,6 @@ function SongOverview() {
   ]);
 
   const addSong = (newSongObject) => {
-    console.log(newSongObject.title);
     if (
       newSongObject.title !== "" &&
       newSongObject.artist !== "" &&
@@ -43,7 +42,7 @@ function SongOverview() {
       inputFields[index].value = "";
     }
     const selectFields = document.getElementsByTagName("select");
-    for (index = 0; index < inputFields.length; index++) {
+    for (index = 0; index < selectFields.length; index++) {
       selectFields[index].selectedIndex = 0;
     }
   };

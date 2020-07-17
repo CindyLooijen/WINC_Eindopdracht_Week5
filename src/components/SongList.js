@@ -10,19 +10,28 @@ const SongList = (props) => {
       deleteSong={props.deleteSong}
     />
   ));
-  console.log();
+
+  const rockGenre = songRows.filter((item) => item.props.value === "Rock");
+  const popGenre = songRows.filter((item) => item.props.value === "Pop");
+  const latinGenre = songRows.filter((item) => item.props.value === "Latin");
+
+  console.log(rockGenre);
 
   return (
     <table cellSpacing="0">
       <tbody>
-        <tr>
-          <th colSpan="4">Rock</th>
+        <tr className="rock-row">
+          {rockGenre.length > 0 ? <th colSpan="4">Rock</th> : <th></th>}
         </tr>
-        {songRows.filter((item) => item.props.value === "Rock")}
+        {rockGenre}
         <tr className="pop-row">
-          <th colSpan="4">Pop</th>
+          {popGenre.length > 0 ? <th colSpan="4">Pop</th> : <th></th>}
         </tr>
-        {songRows.filter((item) => item.props.value === "Pop")}
+        {popGenre}
+        <tr className="latin-row">
+          {latinGenre.length > 0 ? <th colSpan="4">Latin</th> : <th></th>}
+        </tr>
+        {latinGenre}
       </tbody>
     </table>
   );

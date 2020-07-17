@@ -15,6 +15,7 @@ const SongForm = (props) => {
           </option>
           <option value="Rock">Rock</option>
           <option value="Pop">Pop</option>
+          <option value="Latin">Latin</option>
         </select>
         <select name="rating" ref={register} defaultValue="">
           <option value="" disabled hidden>
