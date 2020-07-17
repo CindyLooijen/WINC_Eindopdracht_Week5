@@ -4,26 +4,7 @@ import SongList from "./SongList";
 import SongListManipulation from "./SongListManipulation";
 
 function SongOverview() {
-  const [songs, setStateSongs] = useState([
-    {
-      title: "Closer",
-      artist: "Kings of Leon",
-      genre: "Rock",
-      rating: "4",
-    },
-    {
-      title: "Animals",
-      artist: "Maroon 5",
-      genre: "Pop",
-      rating: "5",
-    },
-    {
-      title: "Diamant",
-      artist: "Nielson",
-      genre: "Pop",
-      rating: "3",
-    },
-  ]);
+  const [songs, setStateSongs] = useState([]);
 
   const addSong = (newSongObject) => {
     if (
