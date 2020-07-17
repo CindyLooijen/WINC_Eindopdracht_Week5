@@ -15,8 +15,6 @@ const SongList = (props) => {
   const popGenre = songRows.filter((item) => item.props.value === "Pop");
   const latinGenre = songRows.filter((item) => item.props.value === "Latin");
 
-  console.log(rockGenre);
-
   return (
     <table cellSpacing="0">
       <tbody>
