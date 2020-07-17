@@ -3,7 +3,8 @@ import SongForm from "./SongForm";
 import SongList from "./SongList";
 import SongListManipulation from "./SongListManipulation";
 import GetSongs from "./GetSongs";
-import postSongs from "./PostSongs";
+import PostSongs from "./PostSongs";
+import DeleteSongs from "./DeleteSongs";
 
 function SongOverview() {
   const [songs, setStateSongs] = useState([]);
@@ -31,7 +32,7 @@ function SongOverview() {
       newSongObject.genre !== "" &&
       newSongObject.rating !== ""
     ) {
-      const songKey = await postSongs(newSongObject);
+      const songKey = await PostSongs(newSongObject);
       newSongObject.key = songKey;
       setStateSongs([...songs, newSongObject]);
       console.log(songs);
@@ -91,6 +92,7 @@ function SongOverview() {
 
   const deleteSong = (song) => {
     setStateSongs(songs.filter((remainingSongs) => remainingSongs !== song));
+    DeleteSongs(song.key);
   };
 
   const deleteSongList = () => {
