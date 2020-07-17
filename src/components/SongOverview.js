@@ -99,10 +99,10 @@ function SongOverview() {
     <div>
       <SongForm
         addSong={addSong}
-        sortTitle={sortTitle}
         filterSortingMethod={filterSortingMethod}
         deleteSongList={deleteSongList}
       />
+
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
           <tr className="songList-header">
