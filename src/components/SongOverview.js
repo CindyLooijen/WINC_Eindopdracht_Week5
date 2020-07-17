@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SongForm from "./SongForm";
 import SongList from "./SongList";
+import SongListManipulation from "./SongListManipulation";
 
 function SongOverview() {
   const [songs, setStateSongs] = useState([
@@ -97,12 +98,11 @@ function SongOverview() {
 
   return (
     <div>
-      <SongForm
-        addSong={addSong}
-        filterSortingMethod={filterSortingMethod}
+      <SongForm addSong={addSong} />
+      <SongListManipulation
         deleteSongList={deleteSongList}
+        filterSortingMethod={filterSortingMethod}
       />
-
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
           <tr className="songList-header">
