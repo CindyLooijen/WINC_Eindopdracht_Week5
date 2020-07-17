@@ -9,7 +9,13 @@ const SongForm = (props) => {
       <form onSubmit={handleSubmit(props.addSong)}>
         <input name="title" ref={register} placeholder="Title" />
         <input name="artist" ref={register} placeholder="Artist" />
-        <input name="genre" ref={register} placeholder="Genre" />
+        <select name="genre" ref={register} defaultValue="">
+          <option value="" disabled hidden>
+            Select Genre
+          </option>
+          <option value="Rock">Rock</option>
+          <option value="Pop">Pop</option>
+        </select>
         <select name="rating" ref={register} defaultValue="">
           <option value="" disabled hidden>
             Select rating
@@ -37,6 +43,7 @@ const SongForm = (props) => {
         <option value="rating-AZ">Sort rating 1-5</option>
         <option value="rating-ZA">Sort artist 5-1</option>
       </select>
+      <button onClick={() => props.deleteSongList()}>Delete songlist</button>
     </div>
   );
 };

@@ -25,14 +25,26 @@ function SongOverview() {
   ]);
 
   const addSong = (newSongObject) => {
-    //event.preventDefault();
-    setStateSongs([...songs, newSongObject]);
+    console.log(newSongObject.title);
+    if (
+      newSongObject.title !== "" &&
+      newSongObject.artist !== "" &&
+      newSongObject.genre !== "" &&
+      newSongObject.rating !== ""
+    ) {
+      setStateSongs([...songs, newSongObject]);
+    } else {
+      alert("Please fill in all of the fields");
+    }
     const inputFields = document.getElementsByTagName("input");
     let index;
     for (index = 0; index < inputFields.length; index++) {
       inputFields[index].value = "";
     }
-    document.getElementsByTagName("select")[0].selectedIndex = 0;
+    const selectFields = document.getElementsByTagName("select");
+    for (index = 0; index < inputFields.length; index++) {
+      selectFields[index].selectedIndex = 0;
+    }
   };
 
   const sortTitle = (filterChoice, direction) => {
@@ -75,9 +87,22 @@ function SongOverview() {
     }
   };
 
+  const deleteSong = (song) => {
+    setStateSongs(songs.filter((remainingSongs) => remainingSongs !== song));
+  };
+
+  const deleteSongList = () => {
+    setStateSongs([]);
+  };
+
   return (
     <div>
-      <SongForm addSong={addSong} filterSortingMethod={filterSortingMethod} />
+      <SongForm
+        addSong={addSong}
+        filterSortingMethod={filterSortingMethod}
+        deleteSongList={deleteSongList}
+      />
+
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
           <tr className="songList-header">
@@ -88,7 +113,7 @@ function SongOverview() {
           </tr>
         </tbody>
       </table>
-      <SongList songs={songs} />
+      <SongList songs={songs} deleteSong={deleteSong} />
     </div>
   );
 }
