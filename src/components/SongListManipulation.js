@@ -2,7 +2,7 @@ import React from "react";
 
 const SongListManipulation = (props) => {
   return (
-    <div>
+    <div className="song-list-manipulation">
       <select
         name="sortSongList"
         defaultValue="sort"

@@ -78,6 +78,7 @@ function SongOverview() {
 
   return (
     <div>
+      <h1>React Lil Playlist</h1>
       <SongForm addSong={addSong} />
       <SongListManipulation
         deleteSongList={deleteSongList}
