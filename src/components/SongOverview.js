@@ -70,16 +70,14 @@ function SongOverview() {
       case "rating-ZA":
         sortTitle("rating", "ZA");
         break;
+      default:
+        setStateSongs(songs);
     }
   };
 
   return (
     <div>
-      <SongForm
-        addSong={addSong}
-        sortTitle={sortTitle}
-        filterSortingMethod={filterSortingMethod}
-      />
+      <SongForm addSong={addSong} filterSortingMethod={filterSortingMethod} />
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
           <tr className="songList-header">

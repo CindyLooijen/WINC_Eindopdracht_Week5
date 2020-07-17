@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const SongForm = (props) => {
-  const { register, handleSubmit } = useForm(); // initialise the hook
+  const { register, handleSubmit } = useForm();
 
   return (
     <div>
