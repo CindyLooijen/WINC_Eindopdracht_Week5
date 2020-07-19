@@ -113,7 +113,6 @@ function SongOverview() {
       genreIncluded.forEach((song) => (song.display = "include"));
     } else if (checked === false) {
       genreIncluded.forEach((song) => (song.display = "exclude"));
-      setStateFilters({ ...filters, [genre]: true });
     }
     setStateSongs(genreIncluded.concat(genreExcluded));
     setStateFilters({ ...filters, [genre]: checked });
