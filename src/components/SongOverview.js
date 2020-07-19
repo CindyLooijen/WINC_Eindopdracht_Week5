@@ -8,6 +8,11 @@ import DeleteSongs from "./DeleteSongs";
 
 function SongOverview() {
   const [songs, setStateSongs] = useState([]);
+  const [filters, setStateFilters] = useState({
+    Rock: true,
+    Pop: true,
+    Latin: true,
+  });
 
   const renderSongsData = async () => {
     const songsFromDatabase = await GetSongs();
@@ -17,6 +22,7 @@ function SongOverview() {
       artist: songsFromDatabase[key].artist,
       genre: songsFromDatabase[key].genre,
       rating: songsFromDatabase[key].rating,
+      display: "include",
     }));
     setStateSongs(allSongs);
   };
@@ -99,6 +105,20 @@ function SongOverview() {
     setStateSongs([]);
   };
 
+  const filterSongs = (genre, checked) => {
+    const copyOfSongs = songs.slice(0);
+    const genreIncluded = copyOfSongs.filter((songs) => songs.genre === genre);
+    const genreExcluded = copyOfSongs.filter((songs) => songs.genre !== genre);
+    if (checked === true) {
+      genreIncluded.forEach((song) => (song.display = "include"));
+    } else if (checked === false) {
+      genreIncluded.forEach((song) => (song.display = "exclude"));
+      setStateFilters({ ...filters, [genre]: true });
+    }
+    setStateSongs(genreIncluded.concat(genreExcluded));
+    setStateFilters({ ...filters, [genre]: checked });
+  };
+
   return (
     <div>
       <h1>React Lil Playlist</h1>
@@ -106,6 +126,8 @@ function SongOverview() {
       <SongListManipulation
         deleteSongList={deleteSongList}
         filterSortingMethod={filterSortingMethod}
+        filterSongs={filterSongs}
+        filters={filters}
       />
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
@@ -117,7 +139,11 @@ function SongOverview() {
           </tr>
         </tbody>
       </table>
-      <SongList songs={songs} deleteSong={deleteSong} />
+      <SongList
+        songs={songs}
+        deleteSong={deleteSong}
+        filterSongs={filterSongs}
+      />
     </div>
   );
 }
