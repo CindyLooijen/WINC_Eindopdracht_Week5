@@ -32,7 +32,7 @@ const SongListManipulation = (props) => {
           value="Rock"
           checked={props.filters.Rock}
           onChange={(event) =>
-            props.filterSongs(event.target.value, event.target.checked)
+            props.filterSongList(event.target.value, event.target.checked)
           }
         ></input>
         <label className="filteren">Filter Rock</label>
@@ -43,7 +43,7 @@ const SongListManipulation = (props) => {
             value="Pop"
             checked={props.filters.Pop}
             onChange={(event) =>
-              props.filterSongs(event.target.value, event.target.checked)
+              props.filterSongList(event.target.value, event.target.checked)
             }
           ></input>
           Filter Pop
@@ -55,7 +55,7 @@ const SongListManipulation = (props) => {
             value="Latin"
             checked={props.filters.Latin}
             onChange={(event) =>
-              props.filterSongs(event.target.value, event.target.checked)
+              props.filterSongList(event.target.value, event.target.checked)
             }
           ></input>
           Filter Latin

@@ -56,7 +56,7 @@ function SongOverview() {
     }
   };
 
-  const sortTitle = (filterChoice, direction) => {
+  const sortSongList = (filterChoice, direction) => {
     const copyOfSongs = songs.slice(0);
     if (direction === "AZ") {
       const sortedSongs = copyOfSongs.sort((a, b) =>
@@ -74,22 +74,22 @@ function SongOverview() {
   const filterSortingMethod = (chosenFilter) => {
     switch (chosenFilter) {
       case "title-AZ":
-        sortTitle("title", "AZ");
+        sortSongList("title", "AZ");
         break;
       case "title-ZA":
-        sortTitle("title", "ZA");
+        sortSongList("title", "ZA");
         break;
       case "artist-AZ":
-        sortTitle("artist", "AZ");
+        sortSongList("artist", "AZ");
         break;
       case "artist-ZA":
-        sortTitle("artist", "ZA");
+        sortSongList("artist", "ZA");
         break;
       case "rating-AZ":
-        sortTitle("rating", "AZ");
+        sortSongList("rating", "AZ");
         break;
       case "rating-ZA":
-        sortTitle("rating", "ZA");
+        sortSongList("rating", "ZA");
         break;
       default:
         setStateSongs(songs);
@@ -105,7 +105,7 @@ function SongOverview() {
     setStateSongs([]);
   };
 
-  const filterSongs = (genre, checked) => {
+  const filterSongList = (genre, checked) => {
     const copyOfSongs = songs.slice(0);
     const genreIncluded = copyOfSongs.filter((songs) => songs.genre === genre);
     const genreExcluded = copyOfSongs.filter((songs) => songs.genre !== genre);
@@ -125,7 +125,7 @@ function SongOverview() {
       <SongListManipulation
         deleteSongList={deleteSongList}
         filterSortingMethod={filterSortingMethod}
-        filterSongs={filterSongs}
+        filterSongList={filterSongList}
         filters={filters}
       />
       <table cellSpacing="0" className="table-songlist-header">
@@ -141,7 +141,7 @@ function SongOverview() {
       <SongList
         songs={songs}
         deleteSong={deleteSong}
-        filterSongs={filterSongs}
+        filterSongList={filterSongList}
       />
     </div>
   );
