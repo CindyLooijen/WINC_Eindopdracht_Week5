@@ -8,6 +8,11 @@ import DeleteSongs from "./DeleteSongs";
 
 function SongOverview() {
   const [songs, setStateSongs] = useState([]);
+  const [filters, setStateFilters] = useState({
+    Rock: true,
+    Pop: true,
+    Latin: true,
+  });
 
   const renderSongsData = async () => {
     const songsFromDatabase = await GetSongs();
@@ -17,6 +22,7 @@ function SongOverview() {
       artist: songsFromDatabase[key].artist,
       genre: songsFromDatabase[key].genre,
       rating: songsFromDatabase[key].rating,
+      display: "include",
     }));
     setStateSongs(allSongs);
   };
@@ -50,7 +56,7 @@ function SongOverview() {
     }
   };
 
-  const sortTitle = (filterChoice, direction) => {
+  const sortSongList = (filterChoice, direction) => {
     const copyOfSongs = songs.slice(0);
     if (direction === "AZ") {
       const sortedSongs = copyOfSongs.sort((a, b) =>
@@ -68,22 +74,22 @@ function SongOverview() {
   const filterSortingMethod = (chosenFilter) => {
     switch (chosenFilter) {
       case "title-AZ":
-        sortTitle("title", "AZ");
+        sortSongList("title", "AZ");
         break;
       case "title-ZA":
-        sortTitle("title", "ZA");
+        sortSongList("title", "ZA");
         break;
       case "artist-AZ":
-        sortTitle("artist", "AZ");
+        sortSongList("artist", "AZ");
         break;
       case "artist-ZA":
-        sortTitle("artist", "ZA");
+        sortSongList("artist", "ZA");
         break;
       case "rating-AZ":
-        sortTitle("rating", "AZ");
+        sortSongList("rating", "AZ");
         break;
       case "rating-ZA":
-        sortTitle("rating", "ZA");
+        sortSongList("rating", "ZA");
         break;
       default:
         setStateSongs(songs);
@@ -99,6 +105,19 @@ function SongOverview() {
     setStateSongs([]);
   };
 
+  const filterSongList = (genre, checked) => {
+    const copyOfSongs = songs.slice(0);
+    const genreIncluded = copyOfSongs.filter((songs) => songs.genre === genre);
+    const genreExcluded = copyOfSongs.filter((songs) => songs.genre !== genre);
+    if (checked === true) {
+      genreIncluded.forEach((song) => (song.display = "include"));
+    } else if (checked === false) {
+      genreIncluded.forEach((song) => (song.display = "exclude"));
+    }
+    setStateSongs(genreIncluded.concat(genreExcluded));
+    setStateFilters({ ...filters, [genre]: checked });
+  };
+
   return (
     <div>
       <h1>React Lil Playlist</h1>
@@ -106,6 +125,8 @@ function SongOverview() {
       <SongListManipulation
         deleteSongList={deleteSongList}
         filterSortingMethod={filterSortingMethod}
+        filterSongList={filterSongList}
+        filters={filters}
       />
       <table cellSpacing="0" className="table-songlist-header">
         <tbody>
@@ -117,7 +138,11 @@ function SongOverview() {
           </tr>
         </tbody>
       </table>
-      <SongList songs={songs} deleteSong={deleteSong} />
+      <SongList
+        songs={songs}
+        deleteSong={deleteSong}
+        filterSongList={filterSongList}
+      />
     </div>
   );
 }
